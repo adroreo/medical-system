@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: medical_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: db01
+      MYSQL_USER: medical_user
+      MYSQL_PASSWORD: medical_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - medical_network
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: medical_backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    networks:
+      - medical_network
+    restart: unless-stopped
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
+      - DB_NAME=db01
+
+  frontend:
+    build: ./frontend
+    container_name: medical_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - medical_network
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+
+networks:
+  medical_network:
+    driver: bridge
