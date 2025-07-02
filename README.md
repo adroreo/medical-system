@@ -231,23 +231,3 @@ SHOW TABLES;
 # Ver usuarios
 SELECT * FROM usuarios;
 ```
-
-## Troubleshooting
-
-### Backend no conecta a BD
-- Verificar que XAMPP este corriendo
-- Verificar credenciales en app.py
-- Ejecutar setup_data.py
-
-### Frontend no conecta al backend
-- Verificar que backend este en puerto 5000
-- Verificar CORS en Flask
-
-### Docker no funciona
-- Verificar que Docker este corriendo
-- Limpiar cache: docker system prune -a
-
-## Autor
-
-Proyecto desarrollado para el curso de Computacion en la Nube.
-
