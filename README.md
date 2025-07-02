@@ -178,7 +178,7 @@ su - ${USER}
 ### 4. Desplegar aplicacion
 ```bash
 # Clonar proyecto
-git clone <tu-repositorio>
+git clone https://github.com/adroreo/medical-system.git
 cd medical-system
 
 # Ejecutar con Docker
